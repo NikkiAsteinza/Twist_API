@@ -1,0 +1,20 @@
+{{> header title="Página de Tareas"}}
+    
+    <div class="container">
+        <div class="row justify-content-between">
+            <p class="h5 p-2 col">id</p>
+            <p class="h5 p-2 col">nombre</p>
+            <p class="h5 p-2 col">estado</p>
+        </div>
+        {{#each tasks}}
+        <div class="row justify-content-between">
+            <p class="p-2 col">{{this.id}}</p>
+            <p class="p-2 col">{{this.name}}</p>
+            <p class="p-2 col {{#if this.status}}bg-succeed {{else}}bg-warning{{/if}}">{{this.status}}</p>
+        </div>
+        {{else}}
+        <div>Sin tareas</div>
+        {{/each}}
+    </div>
+
+{{> footer year=2021}}
