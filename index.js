@@ -39,7 +39,6 @@ server.get("/tasks-list", async (req, res) => {
   res.render("tasks", { tasks });
 });
 server.get("/switch-task/:id", async (req, res) => {
-  const tasks = await Task.find();
   const { id } = req.params;
   let taskStatus = false;
   Task.findById(id)
