@@ -1,0 +1,19 @@
+{{> header title="Estado de tarea modificado"}}
+    <div class="container">
+        <div class="row justify-content-between text-center p-2 sticky-top bg-dark text-white">
+            <p class="h5 p-2 col-2"><i class="fa-solid fa-person-digging"></i></p>
+            <p class="h5 p-2 col-1"><i class="fa-solid fa-signal"></i></p>
+        </div>
+        <div class="row justify-content-between text-center border rounded align-items-center mt-2 mb-2 p-2 bg-light">
+            <p class="p-2 col-2 btn btn-primary m-0">{{task.name}}</p>
+            <div class="p-2 col-1 text-center">
+                <p style="width:30px; height:30px;" class="d-inline-block p-2 m-0 rounded-circle {{#if task.status}}bg-success {{else}}bg-warning{{/if}}"></p>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <a href="../tasks-list" class="btn btn-secondary"><i class="fa-solid fa-left-long"></i> Volver a la lista</a>
+        </div>
+     
+    </div>
+   
+{{> footer year=2021}}
