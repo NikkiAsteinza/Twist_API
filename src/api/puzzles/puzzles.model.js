@@ -7,7 +7,8 @@ const puzzleSchema = mongoose.Schema({
     finished_at:{type:Date},
     intro_video:{type:String},
     end_video:{type:String},
-    // tasks:{type:mongoose.Schema.Types.tasks[]}
+    tasks:[{type:mongoose.Schema.Types.tasks}
+    ]
 });
 
 const Puzzle = mongoose.model("puzzles", puzzleSchema);
