@@ -1,43 +1,55 @@
 {{> header title="Puzzles"}}
-    <div class="container">
-        <div class="row justify-content-between text-center p-2 sticky-top bg-dark text-white">
-            <p class="h5 p-2 col-1"><i class="fa-solid fa-fingerprint"></i></p>
-            <p class="h5 p-2 col-2"><i class="fa-solid fa-person-digging"></i></p>
-            <p class="h5 p-2 col-1"><i class="fa-solid fa-signal"></i></p>
-            <p class="h5 p-2 col-1"><i class="fa-solid fa-wand-magic-sparkles"></i></p>
-            <p class="h5 p-2 col-1"><i class="fa-solid fa-trash"></i></p>
-        </div>
-        {{#each puzzles}}
-        <div class="row justify-content-between text-center border rounded align-items-center mt-2 mb-2 p-2 bg-light">
-            <p class="p-2 col-1 btn btn-primary m-0" onclick="copyLink('{{this.id}}')">Copy</p>
-            <p class="p-2 col-3 d-none">{{this.id}}</p>
-            <p class="p-2 col-2">{{this.name}}</p>
-            <div class="p-2 col-1 text-center">
-                <p style="width:30px; height:30px;" class="d-inline-block p-2 m-0 rounded-circle {{#if this.status}}bg-success {{else}}bg-warning{{/if}}"></p>
-            </div>
-            <div class="p-2 col-1 text-center">
-                <a href="/switch-task/{{this.id}}" class="{{#if this.status}}
-                bg-danger{{else}} bg-success{{/if}} d-inline-block m-0 rounded text-white p-2" style="width:30px; height:30px;" >
-                    <i class="d-flex fa-solid fa-toggle-{{#if this.status}}off{{else}}on {{/if}}"></i>
-                </a>
-            </div>
-            <div class="pt-2 pb-2 col-1 text-center m-0">
-                <button class="btn-secondary rounded"><i class="fa-solid fa-trash"></i></button>
-            </div>
-        </div>
-        {{else}}
-        <div>Sin tareas</div>
-        {{/each}}
+
+<div class="container">
+    <div class="row justify-content-end p-2 mb-2">
+        <a class="btn btn-success" href="./puzzles-create">Create puzzle</a>
     </div>
+    <div class="row justify-content-between text-center p-2 sticky-top bg-dark text-white">
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-fingerprint"></i></p>
+        <p class="h5 p-2 col-2"><i class="fa-solid fa-person-digging"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-signal"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-wand-magic-sparkles"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-trash"></i></p>
+    </div>
+    {{#each puzzles}}
+    <div class="row justify-content-between text-center border rounded align-items-center mt-2 mb-2 p-2 bg-light">
+        <p class="p-2 col-1 btn btn-primary m-0" onclick="copyLink('{{this.id}}')">Copy</p>
+        <p class="p-2 col-3 d-none">{{this.id}}</p>
+        <p class="p-2 col-2">{{this.puzzleName}}</p>
+        <div class="p-2 col-1 text-center">
+            <p style="width:30px; height:30px;"
+                class="d-inline-block p-2 m-0 rounded-circle {{#if this.status}}bg-success {{else}}bg-warning{{/if}}">
+            </p>
+        </div>
+        <div class="p-2 col-1 text-center">
+            <a href="/switch-task/{{this.id}}" class="{{#if this.status}}
+                bg-danger{{else}} bg-success{{/if}} d-inline-block m-0 rounded text-white p-2"
+                style="width:30px; height:30px;">
+                <i class="d-flex fa-solid fa-toggle-{{#if this.status}}off{{else}}on {{/if}}"></i>
+            </a>
+        </div>
+        <div class="pt-2 pb-2 col-1 text-center m-0">
+            <button class="btn-secondary rounded"><i class="fa-solid fa-trash"></i></button>
+        </div>
+    </div>
+    {{else}}
+    <div class="row p-2 text-center bg-warning">
+        <p class="m-0">Sin puzzles</p>
+    </div>
+    <div class="row justify-content-end">
+        <a class="btn btn-success mt-2" href="./puzzles-create">Create puzzle</a>
+    </div>
+    {{/each}}
+</div>
 <script>
 
-function copyLink(id){
-   // Copy the text inside the text field
-  navigator.clipboard.writeText(id);
+    function copyLink(id) {
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(id);
 
-  // Alert the copied text
-  alert("Copied the text: " + id);
-}
+        // Alert the copied text
+        alert("Copied the text: " + id);
+    }
 
 </script>
 {{> footer year=2021}}
