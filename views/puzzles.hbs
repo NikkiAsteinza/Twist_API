@@ -1,4 +1,4 @@
-{{> header title="Puzzles"}}
+{{> header title="Puzzles" icon="fa-solid fa-puzzle-piece"}}
 
 <div class="container">
     <div class="row justify-content-end p-2 mb-2">
@@ -7,20 +7,23 @@
     <div class="row justify-content-between text-center p-2 sticky-top bg-dark text-white">
         <p class="h5 p-2 col-1"><i class="fa-solid fa-fingerprint"></i></p>
         <p class="h5 p-2 col-2"><i class="fa-solid fa-person-digging"></i></p>
-        <p class="h5 p-2 col-1"><i class="fa-solid fa-signal"></i></p>
-        <p class="h5 p-2 col-1"><i class="fa-solid fa-wand-magic-sparkles"></i></p>
-        <p class="h5 p-2 col-1"><i class="fa-solid fa-trash"></i></p>
+        <p class="h5 p-2 col-2"><i class="fa-regular fa-file-lines"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-play"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-stop"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-film"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-film"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-thumbtack"></i></p>
     </div>
     {{#each puzzles}}
     <div class="row justify-content-between text-center border rounded align-items-center mt-2 mb-2 p-2 bg-light">
         <p class="p-2 col-1 btn btn-primary m-0" onclick="copyLink('{{this.id}}')">Copy</p>
         <p class="p-2 col-3 d-none">{{this.id}}</p>
         <p class="p-2 col-2">{{this.puzzleName}}</p>
-        <div class="p-2 col-1 text-center">
-            <p style="width:30px; height:30px;"
-                class="d-inline-block p-2 m-0 rounded-circle {{#if this.status}}bg-success {{else}}bg-warning{{/if}}">
-            </p>
-        </div>
+        <p class="p-2 col-2">{{this.description}}</p>
+        <p class="p-2 col-2">{{this.startedAt}}</p>
+        <p class="p-2 col-2">{{this.finishedAt}}</p>
+        <p class="p-2 col-2">{{this.introVideo}}</p>
+        <p class="p-2 col-2">{{this.endVideo}}</p>
         <div class="p-2 col-1 text-center">
             <a href="/switch-task/{{this.id}}" class="{{#if this.status}}
                 bg-danger{{else}} bg-success{{/if}} d-inline-block m-0 rounded text-white p-2"
