@@ -52,11 +52,20 @@ server.get("/puzzles-list", async (req, res) => {
 });
 server.get("/puzzles-create", async (req, res) => {
   const tasks = await Task.find();
-  res.render("puzzles/create", { tasks });
+  const isEdit = false;
+  res.render("puzzles/create", { tasks, isEdit });
+});
+server.get("/puzzles-edit/:id", async (req, res) => {
+  const { id } = req.params;
+  Puzzle.findById(id)
+  .then((puzzle)=>{
+        res.render("puzzles/create", { puzzle });
+      })
+      .catch((err) => next(err));
 });
 server.post("/puzzles-create-sent", async (req, res, next) => {
   console.log(req.body);
-  
+
   Puzzle.create(req.body)
       .then((newPuzzle) => {
         console.log(newPuzzle)

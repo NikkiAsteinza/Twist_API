@@ -8,32 +8,39 @@
         <p class="h5 p-2 col-1"><i class="fa-solid fa-fingerprint"></i></p>
         <p class="h5 p-2 col-2"><i class="fa-solid fa-person-digging"></i></p>
         <p class="h5 p-2 col-2"><i class="fa-regular fa-file-lines"></i></p>
-        <p class="h5 p-2 col-1"><i class="fa-solid fa-play"></i></p>
-        <p class="h5 p-2 col-1"><i class="fa-solid fa-stop"></i></p>
-        <p class="h5 p-2 col-1"><i class="fa-solid fa-film"></i></p>
-        <p class="h5 p-2 col-1"><i class="fa-solid fa-film"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-signal"></i></p>
+        {{!-- <p class="h5 p-2 col-1"><i class="fa-solid fa-play"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-stop"></i></p> --}}
+        {{!-- <p class="h5 p-2 col-1"><i class="fa-solid fa-film"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-film"></i></p> --}}
         <p class="h5 p-2 col-1"><i class="fa-solid fa-thumbtack"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-repeat"></i></p>
+        <p class="h5 p-2 col-1"><i class="fa-solid fa-bolt"></i></p>
     </div>
     {{#each puzzles}}
     <div class="row justify-content-between text-center border rounded align-items-center mt-2 mb-2 p-2 bg-light">
         <p class="p-2 col-1 btn btn-primary m-0" onclick="copyLink('{{this.id}}')">Copy</p>
-        <p class="p-2 col-3 d-none">{{this.id}}</p>
+        <p class="p-2 col-1 d-none">{{this.id}}</p>
         <p class="p-2 col-2">{{this.puzzleName}}</p>
         <p class="p-2 col-2">{{this.description}}</p>
-        <p class="p-2 col-2">{{this.startedAt}}</p>
-        <p class="p-2 col-2">{{this.finishedAt}}</p>
-        <p class="p-2 col-2">{{this.introVideo}}</p>
-        <p class="p-2 col-2">{{this.endVideo}}</p>
         <div class="p-2 col-1 text-center">
-            <a href="/switch-task/{{this.id}}" class="{{#if this.status}}
-                bg-danger{{else}} bg-success{{/if}} d-inline-block m-0 rounded text-white p-2"
+            <p style="width:30px; height:30px;" class="d-inline-block p-2 m-0 rounded-circle {{#if this.status}}bg-success {{else}}bg-warning{{/if}}"></p>
+        </div>
+        <p class="p-2 col-1">{{tasks.lenght}}</p>
+        <div class="p-2 col-1">
+            <a href="/switch-puzzle/{{this.id}}" class="{{#if this.status}}
+                bg-success{{else}} bg-danger{{/if}} d-inline-block m-0 rounded text-white p-2"
                 style="width:30px; height:30px;">
                 <i class="d-flex fa-solid fa-toggle-{{#if this.status}}off{{else}}on {{/if}}"></i>
             </a>
         </div>
-        <div class="pt-2 pb-2 col-1 text-center m-0">
-            <button class="btn-secondary rounded"><i class="fa-solid fa-trash"></i></button>
-        </div>
+        {{!-- <p class="p-2 col-2">{{this.startedAt}}</p>
+        <p class="p-2 col-2">{{this.finishedAt}}</p> --}}
+        {{!-- <p class="p-2 col-2">{{this.introVideo}}</p>
+        <p class="p-2 col-2">{{this.endVideo}}</p> --}}
+        <div class="pt-2 pb-1 col-1 text-center m-0">
+            <a class="btn btn-primary mt-2" href="./puzzles-edit/{{this.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+        </div>          
     </div>
     {{else}}
     <div class="row p-2 text-center bg-warning">
@@ -42,7 +49,9 @@
     <div class="row justify-content-end">
         <a class="btn btn-success mt-2" href="./puzzles-create">Create puzzle</a>
     </div>
+
     {{/each}}
+
 </div>
 <script>
 

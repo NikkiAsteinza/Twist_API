@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const puzzleSchema = mongoose.Schema({
     puzzleName:{type:String, required:true, maxLeght:50},
     description:{type:String, maxLeght:250},
+    status:{type:Boolean, default:false},
     startedAt:{type:String},
     finishedAt:{type:String},
     introVideo:{type:String},
