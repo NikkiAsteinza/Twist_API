@@ -6,8 +6,11 @@ const escapeRoomSchema = mongoose.Schema({
     challange: {type:String, required:true},
     players: {type:Number, required:true},
     duration:{type:Number, required:true},
-    price: {type:Number,required:true},
-    prize:{type:String},
-    prize_url:{type:String}
-    // puzzles: {type:puzzles}
+    puzzles:[{type: mongoose.Types.ObjectId, ref: "puzzles"}]
+},
+{
+    timestamps:true,
+    collection:"escapeRoom"
 });
+const EscapeRoom = mongoose.model("escapeRoom", escapeRoomSchema);
+module.exports = EscapeRoom;

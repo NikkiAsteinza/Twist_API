@@ -1,0 +1,14 @@
+<div class="container">
+    {{> header title="Puzzles" icon="fa-solid fa-puzzle-piece"}}
+    {{> entityTable entities=puzzles type="puzzles" name="puzzles" emptyText="Sin puzzles"}}
+</div>
+<script>
+    function copyLink(id) {
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(id);
+
+        // Alert the copied text
+        alert("Copied the text: " + id);
+    }
+</script>
+{{> footer year=2021}}

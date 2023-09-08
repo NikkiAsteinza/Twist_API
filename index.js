@@ -1,3 +1,4 @@
+var bodyParser = require('body-parser');
 // Init server
 const tasksRoutes = require("./src/api/tasks/tasks.routes.js");
 const express = require("express");
@@ -6,6 +7,9 @@ const cors = require("cors");
 require("dotenv").config();
 
 const PORT = process.env.PORT;
+
+// Put this statement near the top of your module
+var bodyParser = require('body-parser');
 
 // Mongoose
 //* Me traigo mi base de datos
@@ -22,11 +26,15 @@ server.use(cors());
 // HBS Templates
 const hbs = require("hbs");
 const Task = require("./src/api/tasks/tasks.model.js");
+const Puzzle = require("./src/api/puzzles/puzzles.model.js");
+const EscapeRoom = require('./src/api/escape-room/escape-room.model.js');
 
 hbs.registerPartials(__dirname + "/views/partials", function (err) {});
 server.set("view engine", "hbs");
 server.set("views", __dirname + "/views");
-
+// Put these statements before you define any routes.
+server.use(bodyParser.urlencoded());
+server.use(bodyParser.json());
 server.use(express.static(__dirname + "/public"));
 
 //Render route
@@ -38,8 +46,50 @@ server.get("/tasks-list", async (req, res) => {
 
   res.render("tasks", { tasks });
 });
-server.get("/switch-task/:id", async (req, res) => {
+server.get("/puzzles-list", async (req, res) => {
+  const puzzles = await Puzzle.find();
+
+  res.render("puzzles", { puzzles });
+});
+server.get("/escape-rooms-list", async (req, res) => {
+  const escapeRooms = await EscapeRoom.find();
+
+  res.render("escape-rooms", { escapeRooms });
+});
+server.get("/puzzles-create", async (req, res) => {
+  const tasks = await Task.find();
+  const isEdit = false;
+  res.render("entity/create", { tasks, isEdit });
+});
+server.get("/puzzles-edit/:id", async (req, res, next) => {
   const { id } = req.params;
+  Puzzle.findById(id)
+  .then((puzzle)=>{
+        res.render("entity/create", { puzzle });
+      })
+      .catch((err) => next(err));
+});
+server.post("/puzzles-create-sent", async (req, res, next) => {
+  console.log(req.body);
+
+  Puzzle.create(req.body)
+      .then((newPuzzle) => {
+        console.log(newPuzzle)
+        res.render("entity/create-sent", { newPuzzle });
+      })
+      .catch(err => {
+          if (err) {
+              console.log(err)
+              renderWithErrors(err.errors);
+          } else {
+              console.log(err)
+              next(err)
+          }
+      })
+  
+});
+server.get("/switch-task/:id", async (req, res) => {
+  const { id } = req.body;
   let taskStatus = false;
   Task.findById(id)
   .then((task)=>{
@@ -55,7 +105,7 @@ server.get("/switch-task/:id", async (req, res) => {
       .then((task) => {
         console.log(task);
         task.status = targetStatus;
-        res.render("tasks/switcher",  {task:task} );
+        res.render("entity/switcher",  {task:task} );
       })
       .catch((err) => next(err));
   })
