@@ -27,6 +27,7 @@ server.use(cors());
 const hbs = require("hbs");
 const Task = require("./src/api/tasks/tasks.model.js");
 const Puzzle = require("./src/api/puzzles/puzzles.model.js");
+const EscapeRoom = require('./src/api/escape-room/escape-room.model.js');
 
 hbs.registerPartials(__dirname + "/views/partials", function (err) {});
 server.set("view engine", "hbs");
@@ -50,16 +51,21 @@ server.get("/puzzles-list", async (req, res) => {
 
   res.render("puzzles", { puzzles });
 });
+server.get("/escape-rooms-list", async (req, res) => {
+  const escapeRooms = await EscapeRoom.find();
+
+  res.render("escape-rooms", { escapeRooms });
+});
 server.get("/puzzles-create", async (req, res) => {
   const tasks = await Task.find();
   const isEdit = false;
-  res.render("puzzles/create", { tasks, isEdit });
+  res.render("entity/create", { tasks, isEdit });
 });
-server.get("/puzzles-edit/:id", async (req, res) => {
+server.get("/puzzles-edit/:id", async (req, res, next) => {
   const { id } = req.params;
   Puzzle.findById(id)
   .then((puzzle)=>{
-        res.render("puzzles/create", { puzzle });
+        res.render("entity/create", { puzzle });
       })
       .catch((err) => next(err));
 });
@@ -69,7 +75,7 @@ server.post("/puzzles-create-sent", async (req, res, next) => {
   Puzzle.create(req.body)
       .then((newPuzzle) => {
         console.log(newPuzzle)
-        res.render("puzzles/create-sent", { newPuzzle });
+        res.render("entity/create-sent", { newPuzzle });
       })
       .catch(err => {
           if (err) {
@@ -99,7 +105,7 @@ server.get("/switch-task/:id", async (req, res) => {
       .then((task) => {
         console.log(task);
         task.status = targetStatus;
-        res.render("tasks/switcher",  {task:task} );
+        res.render("entity/switcher",  {task:task} );
       })
       .catch((err) => next(err));
   })

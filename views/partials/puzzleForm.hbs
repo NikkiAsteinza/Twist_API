@@ -21,52 +21,53 @@
             </textarea>
         </div>
 
-        <div class="mb-3 row w-100 justify-content-between">
-            <div class="col mb-3"></div>
-            <label for="startedAt" class="form-label">Started At:</label>
-            <input type="text" class="form-control" id="startedAt" name="startedAt"
-                {{#if puzzle}}
-                value={{ puzzle.startedAt }} {{/if}}
-            >
-                   </div>
-            <div class="col mb-3">
-            <label for="finishedAt" class="form-label">Finished At:</label>
-            <input type="text" class="form-control" id="finishedAt" name="finishedAt"
-            {{#if puzzle}}
-                value={{ puzzle.finishedAt }} {{/if}}
-            >
-        </div>
-        </div>
-
-
-
-        <div class="input-group mb-3">
-            <label for="introVideo" class="form-label">Intro Video URL:</label>
-            <input type="text" class="form-control" id="introVideo" name="introVideo"
-            {{#if puzzle}}
-                value={{ puzzle.introVideo }} {{/if}}
-            >
-        </div>
-
-        <div class="input-group mb-3">
-            <label for="endVideo" class="form-label">End Video URL:</label>
-            <input type="text" class="form-control" id="endVideo" name="endVideo" {{#if puzzle}}
-                value={{ puzzle.endVideo }} {{/if}}
-            >
-        </div>
-
-        <div class="input-group mb-3">
+        <div class="mb-3 mb-3 row w-100 justify-content-between">
             <label for="tasks" class="form-label">Select Tasks:</label>
-
-                {{#each puzzle.tasks}}
-                <div class="row">
-                <h3 value="{{_id}}">{{name}}</h3>
-                </div>
-                
+            <select id="tasks" name="tasks" class="custom-select mr-sm-2" multiple>
+                {{#each tasks}}
+                <option value="{{_id}}">{{name}}</option>
                 {{/each}}
+            </select>
         </div>
+
+        <div class="mb-3 row w-100 justify-content-between">
+            <div class="col mb-3">
+                <label for="introVideo" class="form-label">Intro Video URL:</label>
+                <input type="text" class="form-control" id="introVideo" name="introVideo"
+                {{#if puzzle}}
+                    value={{ puzzle.introVideo }} {{/if}}
+                >
+            </div>
+
+            <div class="col mb-3">
+                <label for="endVideo" class="form-label">End Video URL:</label>
+                <input type="text" class="form-control" id="endVideo" name="endVideo" {{#if puzzle}}
+                    value={{ puzzle.endVideo }} {{/if}}
+                >
+                </div>
+        </div>
+
+        <div class="mb-3 row w-100 justify-content-between">
+            <div class="col mb-3">
+                <label for="startedAt" class="form-label">Started At:</label>
+                <input type="text" class="form-control" id="startedAt" name="startedAt"
+                    {{#if puzzle}}
+                    value={{ puzzle.startedAt }} {{/if}} disabled
+                >
+            </div>
+
+            <div class="col mb-3">
+                <label for="finishedAt" class="form-label">Finished At:</label>
+                <input type="text" class="form-control" id="finishedAt" name="finishedAt"
+                {{#if puzzle}}
+                    value={{ puzzle.finishedAt }} {{/if}} disabled
+                >
+            </div>
+        </div>
+
         <div class="row justify-content-end">
-            <a class="btn btn-secondary mt-2 mr-2" href="./puzzles-list">Volver</a>
+            <a class="btn btn-secondary mt-2 mr-2" href="../puzzles-list">Volver</a>
+            {{> deleteButton action="./puzzle-delete/{{puzzle.id}}"}}
             <button type="submit" class="btn btn-primary mt-2"> {{#if puzzle}}
                 Guardar{{else}}Crear{{/if}}
             </button>

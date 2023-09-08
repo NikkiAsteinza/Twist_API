@@ -29,15 +29,6 @@
             <label for="endVideo" class="form-label">End Video URL:</label>
             <input type="text" class="form-control" id="endVideo" name="endVideo">
         </div>
-
-        <div class="input-group mb-3">
-            <label for="tasks" class="form-label">Select Tasks:</label>
-            <select id="tasks" name="tasks" class="custom-select mr-sm-2" multiple>
-                {{#each tasks}}
-                <option value="{{_id}}">{{name}}</option>
-                {{/each}}
-            </select>
-        </div>
         <button type="submit" class="btn btn-primary">Create Puzzle</button>
     </form>
 </div>

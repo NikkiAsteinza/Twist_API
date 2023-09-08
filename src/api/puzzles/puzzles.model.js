@@ -1,14 +1,10 @@
 const mongoose = require("mongoose");
 
-const puzzleSchema = mongoose.Schema({
-    puzzleName:{type:String, required:true, maxLeght:50},
+const puzzleSchema = mongoose.Schema(
+{
+    name:{type:String, required:true, maxLeght:50},
     description:{type:String, maxLeght:250},
-    status:{type:Boolean, default:false},
-    startedAt:{type:String},
-    finishedAt:{type:String},
-    introVideo:{type:String},
-    endVideo:{type:String},
-    tasks:[{type: mongoose.Types.ObjectId, ref: "tasks"}]
+    tasks:[{type: mongoose.Types.ObjectId, ref: "puzzles"}]
 },
 {
     timestamps:true,
