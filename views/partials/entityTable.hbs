@@ -3,7 +3,7 @@
     <div class="p-2">
       {{> genericButton
           style="success"
-          action="./{{type}}-create"
+          action="create"
           icon="fa-circle-plus"
           text=  name}}
     </div>
@@ -30,12 +30,14 @@
     <td class="p-2 col-2">
         {{> genericButton
             style="secondary"
-            action="{{type}}-edit/{{this.id}}"
+            action="edit"
+            id=this.id
             icon="fa-edit"
             text=""}}
         {{> genericButton
             style="danger"
-            action="{{type}}-edit/{{this.id}}"
+            action="delete"
+            id=this.id
             icon="fa-trash"
             text=""}}
     </td>

@@ -6,7 +6,7 @@ const escapeRoomPuzzleSchema = mongoose.Schema({
     finishedAt:{type:String, default:"n/a"},
     introVideo:{type:String},
     endVideo:{type:String},
-    escapeRoomPuzzle:[{type: mongoose.Types.ObjectId, ref: "escapeRoomPuzzle"}]
+    puzzle:[{type: mongoose.Types.ObjectId, ref: "puzzle"}]
 },
 {
     timestamps:true,
