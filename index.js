@@ -42,7 +42,7 @@ server.use("handlebars", hbs.engine({
   defaultLayout:"index",
   layoutDir: path.join(__dirname, "views")
 }));
-server.set("view engine",handlebars);
+server.set("view engine", "handlebars");
 server.set("views", path.join(__dirname, "views"));
 //Render route
 server.get("/", (req, res) => {
