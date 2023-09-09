@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const escapeRoomSchema = mongoose.Schema({
+const gameSchema = mongoose.Schema({
     name: {type:String, required:true},
     description: {type:String, required:true},
     challange: {type:String, required:true},
@@ -10,7 +10,7 @@ const escapeRoomSchema = mongoose.Schema({
 },
 {
     timestamps:true,
-    collection:"escapeRoom"
+    collection:"game"
 });
-const EscapeRoom = mongoose.model("escapeRoom", escapeRoomSchema);
-module.exports = EscapeRoom;
+const Game = mongoose.model("game", gameSchema);
+module.exports = Game;
