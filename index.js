@@ -5,6 +5,8 @@ const puzzlesRoutes = require("./src/api/puzzles/puzzles.routes.js");
 const gamesRoutes = require("./src/api/games/games.routes.js");
 // Init server
 const express = require("express");
+const hbs = require("hbs");
+const path = require("path");
 const cors = require("cors");
 // Acceso al .env
 require("dotenv").config();
@@ -27,7 +29,7 @@ const server = express();
 //CORS
 server.use(cors());
 // HBS Templates
-const hbs = require("hbs");
+
 
 hbs.registerPartials(__dirname + "/views/partials", function (err) {});
 server.set("view engine", "hbs");
@@ -36,7 +38,12 @@ server.set("views", __dirname + "/views");
 // Put these statements before you define any routes.
 server.use(bodyParser.json());
 server.use(express.static(__dirname + "/public"));
-
+server.use("handlebars", hbs.engine({
+  defaultLayout:"index",
+  layoutDir: path.join(__dirname, "views")
+}));
+server.set("view engine",handlebars);
+server.set("views", path.join(__dirname, "views"));
 //Render route
 server.get("/", (req, res) => {
   res.render("index", { titulo: "Bienvenidx a la Twist API :)" });
