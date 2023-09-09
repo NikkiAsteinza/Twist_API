@@ -1,0 +1,16 @@
+<div class="container">
+    {{> header title="Games" icon="fa-solid fa-thumbtack"}}
+    {{> entityTable entities=games type="games" name="Games" emptyText="No games found"}}
+</div>
+<script>
+
+function copyLink(id){
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(id);
+
+  // Alert the copied text
+  alert("Copied the text: " + id);
+}
+
+</script>
+{{> footer year=2021}}

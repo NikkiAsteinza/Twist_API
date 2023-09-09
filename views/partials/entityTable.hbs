@@ -1,0 +1,52 @@
+<table class="col">
+  <div class="row justify-content-end sticky-top bg-light">
+    <div class="p-2">
+      {{> genericButton
+          style="success"
+          action="create"
+          icon="fa-circle-plus"
+          text=  name}}
+    </div>
+    <tr class="row justify-content-around text-center p-2 bg-dark text-white">
+      <th class="h5 p-2 col-1"><i class="fa-solid fa-fingerprint"></i></th>
+      <th class="h5 p-2 col-1"><i class="fa-solid fa-person-digging"></i></th>
+      <th class="h5 p-2 col-1"><i class="fa-regular fa-file-lines"></i></th>
+      {{!-- <th class="h5 p-2 col-1"><i class="fa-solid fa-signal"></i></th> --}}
+      <th class="h5 p-2 col-2"><i class="fa-solid fa-bolt"></i></th>
+    </tr>
+  </div>
+
+  {{#each entities}}
+  <tr class="row justify-content-around text-center border rounded align-items-center mt-2 mb-2 p-2 bg-light">
+    <td class="p-2 col-1 btn btn-primary m-0" onclick="copyLink('{{this.id}}')">Copy</td>
+    <td class="p-2 d-none">{{this.id}}</td>
+    
+    <td class="p-2 col-1">{{this.name}}</td>
+    
+    <td class="p-2 col-1">{{this.description}}</td>
+    
+    {{!-- <td class="p-2 col-1">{{> statusIndicator status=this.status }}</td> --}}
+    
+    <td class="p-2 col-2">
+        {{> genericButton
+            style="secondary"
+            action="edit"
+            id=this.id
+            icon="fa-edit"
+            text=""}}
+        {{> genericButton
+            style="danger"
+            action="delete"
+            id=this.id
+            icon="fa-trash"
+            text=""}}
+    </td>
+  </tr>
+{{else}}
+<tr class="row justify-content-around text-center border rounded align-items-center mt-2 mb-2 p-2 bg-light">
+  <td class="p-2 col">
+    {{emptyText}}
+  </td>
+</tr>
+{{/each}}
+</table>
