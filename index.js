@@ -38,11 +38,8 @@ server.set("views", __dirname + "/views");
 // Put these statements before you define any routes.
 server.use(bodyParser.json());
 server.use(express.static(__dirname + "/public"));
-server.use("handlebars", hbs.engine({
-  defaultLayout:"index",
-  layoutDir: path.join(__dirname, "views")
-}));
-server.set("view engine", "handlebars");
+//Handlebars support
+server.set("view engine", "hbs");
 server.set("views", path.join(__dirname, "views"));
 //Render route
 server.get("/", (req, res) => {
