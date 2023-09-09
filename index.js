@@ -28,19 +28,17 @@ const server = express();
 
 //CORS
 server.use(cors());
-// HBS Templates
 
 
+//Handlebars support
 hbs.registerPartials(__dirname + "/views/partials", function (err) {});
-server.set("view engine", "hbs");
+server.set("view engine", hbs);
 server.set("views", __dirname + "/views");
 
 // Put these statements before you define any routes.
 server.use(bodyParser.json());
 server.use(express.static(__dirname + "/public"));
-//Handlebars support
-server.set("view engine", "hbs");
-server.set("views", path.join(__dirname, "views"));
+
 //Render route
 server.get("/", (req, res) => {
   res.render("index", { titulo: "Bienvenidx a la Twist API :)" });
