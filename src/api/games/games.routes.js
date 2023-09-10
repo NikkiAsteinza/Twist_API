@@ -85,8 +85,9 @@ await doc.updateOne(req.body).then((newGame) => {
 
 
 gamesRoutes.get("/delete/:id", async (req, res, next) => {
-        const { id } = req.body;
-        Game.findOneAndDelete(id)
+        const { id } = req.params;
+        
+        Game.findByIdAndDelete(id)
         .then((newGame) => {
           console.log(newGame)
           res.render("entities/operationResult", { 
