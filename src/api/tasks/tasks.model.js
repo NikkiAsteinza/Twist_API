@@ -4,6 +4,8 @@ const taskSchema = mongoose.Schema({
     name:{type:String, required:true, maxLeght:50},
     description:{type:String, maxLeght:250},
     clue:{type:String},
+    introVideo:{type:String},
+    endVideo:{type:String},
 },
 {
     timestamps:true,

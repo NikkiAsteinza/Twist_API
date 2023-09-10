@@ -8,9 +8,9 @@
             <label for="name" class="form-label">Name:</label>
             <input 
                 type="text" class="form-control"
-                id="puzzleName" name="puzzleName" maxlength="50"
+                id="name" name="name" maxlength="50"
                  {{#if puzzle}}
-                value={{ puzzle.puzzleName }} {{/if}}
+                value={{ puzzle.name }} {{/if}}
                 required>
         </div>
 
@@ -38,9 +38,26 @@
                 >
                 </div>
         </div>
+        {{#if puzzle.tasks}}
+        <div class="mb-3 mb-3 row w-100 justify-content-between">
+            <label for="puzzles" class="form-label">Tasks:</label>
+                {{#each puzzle.tasks}}
+                <p value="{{_id}}">{{name}}</p>
+                {{/each}}
+        </div>
+        {{else}}
+        <label for="puzzles" class="form-label">Tasks:</label>
+        <div class="row p-2 bg-warning rounded align-items-middle">
+
+            <p class="m-0 p-0 font-weight-bold">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                    No task added
+            </p>
+        </div>
+        {{/if}}
         {{#if tasks}}
         <div class="mb-3 mb-3 row w-100 justify-content-between">
-            <label for="tasks" class="form-label">Select Puzzles:</label>
+            <label for="tasks" class="form-label">Select Tasks:</label>
             <select id="tasks" name="tasks" class="custom-select mr-sm-2" multiple>
                 {{#each tasks}}
                 <option value="{{_id}}">{{name}}</option>
@@ -59,12 +76,12 @@
         <div class="mb-3 row w-100 justify-content-between">
             <div class="col mb-3">
                 <label for="startedAt" class="form-label">Started At:</label>
-                <input type="text" class="form-control" id="startedAt" name="startedAt" value={{ puzzle.startedAt }}  disabled />
+                <input type="text" class="form-control" id="startedAt" name="startedAt" value={{ puzzle.startedAt }}>
             </div>
 
             <div class="col mb-3">
                 <label for="finishedAt" class="form-label">Finished At:</label>
-                <input type="text" class="form-control" id="finishedAt" name="finishedAt" value={{ puzzle.finishedAt }} disabled />
+                <input type="text" class="form-control" id="finishedAt" name="finishedAt" value={{ puzzle.finishedAt }}>
             </div>
         </div>
 {{/if}}
