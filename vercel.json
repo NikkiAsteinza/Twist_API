@@ -11,5 +11,13 @@
       "src": "/(.*)",
       "dest": "index.js"
     }
-  ]
+  ],
+  "redirects": [
+    { "source": "/", "destination": "https://github.com/datejer/vercel-badge" }
+  ],
+  "functions": {
+    "api/nikkiasteinza/twist-api.ts": {
+      "includeFiles": "assets/**"
+    }
+  }
 }
