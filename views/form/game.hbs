@@ -1,14 +1,13 @@
-{{> header title="Game"}}
 <div class="container mt-5">
-    <form action="/puzzles-create-sent" method="POST" class="form">
+    {{> header title="Game"}}
+    <form action="create/{{#if game}}{{ game.id }}/{{/if}}sent" method="POST" class="form">
         <div class=" mb-3 row w-100 justify-content-between">
             <label for="name" class="form-label">Name:</label>
             <input 
                 type="text" class="form-control"
-                id="puzzleName" name="puzzleName" maxlength="50"
-                 {{#if puzzle}}
-                value={{ puzzle.puzzleName }} {{/if}}
-                required>
+                id="name" name="name" maxlength="50"
+                 {{#if game}} value={{ game.name }} {{/if}}
+                required="true" />
         </div>
 
         <div class="mb-3 mb-3 row w-100 justify-content-between">
@@ -16,73 +15,72 @@
             <textarea 
                 class="form-control" id="description"
                 name="description" maxlength="250"
-                {{#if puzzle}}
-                value={{ puzzle.description }} {{/if}}
-            >
-            </textarea>
+                required="true"
+            >{{#if game}}{{ game.description }}{{/if}}</textarea>
         </div>
 
         <div class="mb-3 mb-3 row w-100 justify-content-between">
-            <label for="tasks" class="form-label">Select Tasks:</label>
-            <select id="tasks" name="tasks" class="custom-select mr-sm-2" multiple>
-                {{#each tasks}}
+            <label for="challange" class="form-label">Challange:</label>
+            <textarea 
+                class="form-control" id="challange"
+                name="challange" maxlength="250"
+                required="true"
+            >{{#if game}}{{ game.challange }}{{/if}}</textarea>
+        </div>
+
+        <div class="mb-3 row w-100 justify-content-between">
+            <div class="col mb-3">
+                <label for="duration" class="form-label">Duration:</label>
+                <input class="form-control" type="number" id="duration" name="duration"
+                {{#if game}} value={{ game.duration }} {{/if}}
+                required="true" />
+            </div>
+
+            <div class="col mb-3">
+                <label for="players" class="form-label">Players:</label>
+                <input class="form-control" type="number" id="players" name="players" {{#if game}} value={{ game.players }}{{/if}} required="true" />
+            </div>
+        </div>
+
+        {{#if puzzles}}
+        <div class="mb-3 mb-3 row w-100 justify-content-between">
+            <label for="puzzles" class="form-label">Select Puzzles:</label>
+            <select id="puzzles" name="puzzles" class="custom-select mr-sm-2" multiple>
+                {{#each puzzles}}
                 <option value="{{_id}}">{{name}}</option>
                 {{/each}}
             </select>
         </div>
-
-        <div class="mb-3 row w-100 justify-content-between">
-            <div class="col mb-3">
-                <label for="introVideo" class="form-label">Intro Video URL:</label>
-                <input type="text" class="form-control" id="introVideo" name="introVideo"
-                {{#if puzzle}}
-                    value={{ puzzle.introVideo }} {{/if}}
-                >
-            </div>
-
-            <div class="col mb-3">
-                <label for="endVideo" class="form-label">End Video URL:</label>
-                <input type="text" class="form-control" id="endVideo" name="endVideo" {{#if puzzle}}
-                    value={{ puzzle.endVideo }} {{/if}}
-                >
-                </div>
+        {{else}}
+        <div class="row p-2 bg-warning rounded align-items-middle">
+            <p class="m-0 p-0 font-weight-bold">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                    No puzzles to add
+            </p>
         </div>
-
-        <div class="mb-3 row w-100 justify-content-between">
-            <div class="col mb-3">
-                <label for="startedAt" class="form-label">Started At:</label>
-                <input type="text" class="form-control" id="startedAt" name="startedAt"
-                    {{#if puzzle}}
-                    value={{ puzzle.startedAt }} {{/if}} disabled
-                >
-            </div>
-
-            <div class="col mb-3">
-                <label for="finishedAt" class="form-label">Finished At:</label>
-                <input type="text" class="form-control" id="finishedAt" name="finishedAt"
-                {{#if puzzle}}
-                    value={{ puzzle.finishedAt }} {{/if}} disabled
-                >
-            </div>
-        </div>
+        {{/if}}
 
         <div class="row justify-content-end">
-            <a class="btn btn-secondary mt-2 mr-2" href="../puzzles-list">Volver</a>
-             {{#if puzzle}}
+            {{> genericButton
+                style="primary"
+                entityType=type
+                action="/list"
+                id=this.id
+                icon="fa-arrow-left"
+                text="Back to list"}}
+
+             {{#if game}}
                 {{> genericButton
                 style="danger"
-                action="puzzle/edit"
+                action="game/delete"
                 id=this.id
                 icon="fa-trash"
                 text="Delete"}}
-                {{!-- {{> deleteButton action="./puzzle-delete/{{puzzle.id}}"}} --}}
+                {{!-- {{> deleteButton action="./game-delete/{{game.id}}"}} --}}
             {{/if}}
-            <button type="submit" class="btn btn-primary mt-2"> {{#if puzzle}}
-            
-                Guardar{{else}}Crear{{/if}}
-            </button>
+            {{> submitButton entity=game}}
         </div>
 
     </form>
-</div>
 {{> footer year=2021}}
+</div>

@@ -1,5 +1,6 @@
 <div class="container mt-5">
-    <form action="/puzzles-create-sent" method="POST" class="form">
+    {{> header title="Puzzle"}}
+    <form action="create/{{#if game}}{{ game.id }}/{{/if}}sent" method="POST" class="form">
         <div class=" mb-3 row w-100 justify-content-between">
             <label for="name" class="form-label">Name:</label>
             <input 
@@ -15,19 +16,7 @@
             <textarea 
                 class="form-control" id="description"
                 name="description" maxlength="250"
-                {{#if puzzle}}
-                value={{ puzzle.description }} {{/if}}
-            >
-            </textarea>
-        </div>
-
-        <div class="mb-3 mb-3 row w-100 justify-content-between">
-            <label for="tasks" class="form-label">Select Tasks:</label>
-            <select id="tasks" name="tasks" class="custom-select mr-sm-2" multiple>
-                {{#each tasks}}
-                <option value="{{_id}}">{{name}}</option>
-                {{/each}}
-            </select>
+            >{{#if puzzle}}{{ puzzle.description }} {{/if}}</textarea>
         </div>
 
         <div class="mb-3 row w-100 justify-content-between">
@@ -46,32 +35,57 @@
                 >
                 </div>
         </div>
-
+        {{#if tasks}}
+        <div class="mb-3 mb-3 row w-100 justify-content-between">
+            <label for="tasks" class="form-label">Select Puzzles:</label>
+            <select id="tasks" name="tasks" class="custom-select mr-sm-2" multiple>
+                {{#each tasks}}
+                <option value="{{_id}}">{{name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        {{else}}
+        <div class="row p-2 bg-warning rounded align-items-middle">
+            <p class="m-0 p-0 font-weight-bold">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                    No tasks to add
+            </p>
+        </div>
+        {{/if}}
+{{#if puzzle}}
         <div class="mb-3 row w-100 justify-content-between">
             <div class="col mb-3">
                 <label for="startedAt" class="form-label">Started At:</label>
-                <input type="text" class="form-control" id="startedAt" name="startedAt"
-                    {{#if puzzle}}
-                    value={{ puzzle.startedAt }} {{/if}} disabled
-                >
+                <input type="text" class="form-control" id="startedAt" name="startedAt" value={{ puzzle.startedAt }}  disabled />
             </div>
 
             <div class="col mb-3">
                 <label for="finishedAt" class="form-label">Finished At:</label>
-                <input type="text" class="form-control" id="finishedAt" name="finishedAt"
-                {{#if puzzle}}
-                    value={{ puzzle.finishedAt }} {{/if}} disabled
-                >
+                <input type="text" class="form-control" id="finishedAt" name="finishedAt" value={{ puzzle.finishedAt }} disabled />
             </div>
         </div>
-
+{{/if}}
         <div class="row justify-content-end">
-            <a class="btn btn-secondary mt-2 mr-2" href="../puzzles-list">Volver</a>
-            {{> deleteButton action="./puzzle-delete/{{puzzle.id}}"}}
-            <button type="submit" class="btn btn-primary mt-2"> {{#if puzzle}}
-                Guardar{{else}}Crear{{/if}}
-            </button>
+            {{> genericButton
+                style="primary"
+                entityType=type
+                action="/list"
+                id=this.id
+                icon="fa-arrow-left"
+                text="Back to list"}}
+
+             {{#if puzzle}}
+                {{> genericButton
+                style="danger"
+                action="puzzle/delete"
+                id=this.id
+                icon="fa-trash"
+                text="Delete"}}
+                {{!-- {{> deleteButton action="./game-delete/{{game.id}}"}} --}}
+            {{/if}}
+            {{> submitButton entity=puzzle}}
         </div>
 
     </form>
+    {{> footer year=2021}}
 </div>

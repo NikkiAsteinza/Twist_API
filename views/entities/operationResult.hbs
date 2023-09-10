@@ -1,0 +1,15 @@
+<div class="container">
+    {{> header title=title icon="fa-solid fa-{{icon}}"}}
+    <p class="p-3">
+    {{message}} 
+    </p>
+    <div class="row justify-content-end">
+    {{> genericButton
+        style="primary"
+        entityType=type
+        action="../list"
+        id=this.id
+        icon="arrow-left"
+        text="Back to list"}}
+    </div>
+</div>

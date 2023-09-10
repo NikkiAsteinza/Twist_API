@@ -1,4 +1,3 @@
-var bodyParser = require("body-parser");
 // Get routes
 const tasksRoutes = require("./src/api/tasks/tasks.routes.js");
 const puzzlesRoutes = require("./src/api/puzzles/puzzles.routes.js");
@@ -6,15 +5,21 @@ const gamesRoutes = require("./src/api/games/games.routes.js");
 // Init server
 const express = require("express");
 const hbs = require("hbs");
-const path = require("path");
+const bodyParser = require('body-parser');
+// create application/json parser
+const jsonParser = bodyParser.json();
+ 
+// create application/x-www-form-urlencoded parser
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+
 const cors = require("cors");
 // Acceso al .env
 require("dotenv").config();
 
 const PORT = process.env.PORT;
 
-// Put this statement near the top of your module
-var bodyParser = require("body-parser");
+
 
 // Mongoose
 //* Me traigo mi base de datos
@@ -28,19 +33,17 @@ const server = express();
 
 //CORS
 server.use(cors());
-// HBS Templates
+server.use(jsonParser);
+server.use(urlencodedParser);
 
-
+//Handlebars support
 hbs.registerPartials(__dirname + "/views/partials", function (err) {});
 server.set("view engine", "hbs");
 server.set("views", __dirname + "/views");
 
 // Put these statements before you define any routes.
-server.use(bodyParser.json());
 server.use(express.static(__dirname + "/public"));
-//Handlebars support
-server.set("view engine", "hbs");
-server.set("views", path.join(__dirname, "views"));
+
 //Render route
 server.get("/", (req, res) => {
   res.render("index", { titulo: "Bienvenidx a la Twist API :)" });
