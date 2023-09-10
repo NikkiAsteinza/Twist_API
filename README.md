@@ -1,6 +1,6 @@
 # Twist_API
-[![Vercel](https://vercel.com/nikkiasteinza/twist-api/deploy/button)](https://vercel.com/nikkiasteinza/twist-api)
-
+<!-- ![Vercel](https://vercelbadge.vercel.app/api/nikkiasteinza/twist-api) -->
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=twist-api)
 ## Dependencies:
 
 - [Handlebars](https://www.npmjs.com/package/hbs)
