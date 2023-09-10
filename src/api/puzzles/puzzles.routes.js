@@ -1,3 +1,4 @@
+const Task = require("../tasks/tasks.model");
 const { getAllPuzzles } = require("./puzzles.controller");
 const Puzzle = require("./puzzles.model");
 
@@ -13,7 +14,8 @@ puzzlesRoutes.get("/list", async (req, res) => {
 });
   
   puzzlesRoutes.get("/create", async (req, res) => {
-    res.render("form/puzzle");
+    const tasks = await Task.find();
+    res.render("form/puzzle", {tasks});
 });
 
 puzzlesRoutes.post("/create/sent", async (req, res, next) => {
@@ -44,11 +46,12 @@ puzzlesRoutes.post("/create/sent", async (req, res, next) => {
 
 puzzlesRoutes.get("/edit/:id", async (req, res, next) => {
     const { id } = req.params;
+    const tasks = await Task.find();
     console.log(id);
     Puzzle.findById(id)
     .then((puzzle)=>{
         console.log("puzzle found "+puzzle);
-        res.render("form/puzzle", { puzzle });
+        res.render("form/puzzle", { puzzle, tasks });
     })
     .catch((err) => next(err));
 });

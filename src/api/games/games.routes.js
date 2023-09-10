@@ -1,3 +1,5 @@
+const Puzzle = require("../puzzles/puzzles.model");
+const Task = require("../tasks/tasks.model");
 const Game = require("./games.model");
 const gamesRoutes = require("express").Router();
 
@@ -10,8 +12,9 @@ gamesRoutes.get("/list", async (req, res) => {
     });
 });
 
-gamesRoutes.get("/create", async (req, res) => {  
-    res.render("form/game");
+gamesRoutes.get("/create", async (req, res) => { 
+    const puzzles = await Puzzle.find();
+    res.render("form/game", puzzles);
 });
 
 gamesRoutes.post("/create/sent", async (req, res, next) => {
@@ -42,11 +45,12 @@ gamesRoutes.post("/create/sent", async (req, res, next) => {
 
 gamesRoutes.get("/edit/:id", async (req, res, next) => {
     const { id } = req.params;
+    const puzzles = await Puzzle.find();
     console.log(id);
     Game.findById(id)
     .then((game)=>{
         console.log("game found "+game);
-        res.render("form/game", { game });
+        res.render("form/game", { game, puzzles });
     })
     .catch((err) => next(err));
 });
