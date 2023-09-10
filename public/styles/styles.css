@@ -1,0 +1,24 @@
+.menu{
+    height:80px;
+    z-index:999;
+}
+.logo{
+    background-image: url("../img/logo.png");
+    background-size: contain;
+    background-repeat:no-repeat;
+    display:block;
+    width:150px;
+    height:50px;
+}
+.tableHeader{
+    position:sticky;
+    top:140px;
+    z-index:777;
+}
+.createButton{
+    position:sticky;
+    top:80px;
+    left:50px;
+    z-index:888;
+    height:60px;
+}

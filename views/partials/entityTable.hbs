@@ -1,13 +1,16 @@
 <table class="col">
-  <div class="row justify-content-end sticky-top bg-light">
-    <div class="p-2">
+  <div class="row bg-light justify-content-around createButton">
+    <div class="p-2 row w-100 justify-content-between">
+      {{> viewTitle
+          icon=icon
+          name=name}}
       {{> genericButton
           style="success"
           action="create"
           icon="fa-circle-plus"
           text=  name}}
     </div>
-    <tr class="row justify-content-around text-center p-2 bg-dark text-white">
+    <tr class="row justify-content-around text-center p-2 bg-dark text-white tableHeader">
       <th class="h5 p-2 col-1"><i class="fa-solid fa-fingerprint"></i></th>
       <th class="h5 p-2 col-4"><i class="fa-solid fa-person-digging"></i></th>
       <th class="h5 p-2 col-4"><i class="fa-regular fa-file-lines"></i></th>

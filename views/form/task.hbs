@@ -1,5 +1,8 @@
 <div class="container mt-5">
-    {{> header title="Task"}}
+    {{> header}}
+    {{> viewTitle
+    icon="task"
+    name="Task"}}
     <form action="/task-create-sent" method="POST" class="form">
         <div class="input-group mb-3">
             <label for="name" class="form-label">Name:</label>
