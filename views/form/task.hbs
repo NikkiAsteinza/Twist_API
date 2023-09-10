@@ -1,4 +1,5 @@
 <div class="container mt-5">
+    {{> header title="Task"}}
     <form action="/task-create-sent" method="POST" class="form">
         <div class="input-group mb-3">
             <label for="name" class="form-label">Name:</label>
@@ -36,4 +37,5 @@
         </div> --}}
         <button type="submit" class="btn btn-primary">Create Puzzle</button>
     </form>
+    {{> footer year=2021}}
 </div>
