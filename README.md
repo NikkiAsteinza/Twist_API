@@ -1,5 +1,5 @@
 # Twist_API
-[![Vercel](https://vercel.com/nikkiasteinza/twist-api)](https://vercel.com/nikkiasteinza/twist-api)
+[![Vercel](https://vercel.com/nikkiasteinza/twist-api/deploy/button)](https://vercel.com/nikkiasteinza/twist-api)
 
 ## Dependencies:
 
