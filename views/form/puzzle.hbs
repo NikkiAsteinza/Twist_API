@@ -1,5 +1,8 @@
 <div class="container mt-5">
-    {{> header title="Puzzle"}}
+    {{> header}}
+        {{> viewTitle
+        icon="task"
+        name="Puzzle form"}}
     <form action="create/{{#if game}}{{ game.id }}/{{/if}}sent" method="POST" class="form">
         <div class=" mb-3 row w-100 justify-content-between">
             <label for="name" class="form-label">Name:</label>
