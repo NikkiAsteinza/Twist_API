@@ -5,9 +5,9 @@ const gamesRoutes = require("express").Router();
 // HANDLEBARS
 
 gamesRoutes.get("/list", async (req, res) => {
-    const games = await Game.find();
-  
-    res.render("games", { games });
+    Game.find().then((games)=>{
+        res.render("games", { games });
+    });
 });
 
 gamesRoutes.get("/create", async (req, res) => {  
