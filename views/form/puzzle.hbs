@@ -72,19 +72,6 @@
             </p>
         </div>
         {{/if}}
-{{#if puzzle}}
-        <div class="mb-3 row w-100 justify-content-between">
-            <div class="col mb-3">
-                <label for="startedAt" class="form-label">Started At:</label>
-                <input type="text" class="form-control" id="startedAt" name="startedAt" value={{ puzzle.startedAt }}>
-            </div>
-
-            <div class="col mb-3">
-                <label for="finishedAt" class="form-label">Finished At:</label>
-                <input type="text" class="form-control" id="finishedAt" name="finishedAt" value={{ puzzle.finishedAt }}>
-            </div>
-        </div>
-{{/if}}
         <div class="row justify-content-end">
             {{> genericButton
                 style="primary"
