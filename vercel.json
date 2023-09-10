@@ -11,8 +11,5 @@
       "src": "/(.*)",
       "dest": "index.js"
     }
-  ],
-  "redirects": [
-    { "source": "/", "destination": "https://github.com/NikkiAsteinza/twist-api" }
   ]
 }
