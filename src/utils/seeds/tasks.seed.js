@@ -1,7 +1,6 @@
 require("dotenv").config();
 const moongose = require("mongoose");
 const Task = require("../../api/tasks/tasks.model.js");
-const Game = require("../../api/games/games.model.js");
 const DB_URL = process.env.DB_URL;
 const tasks = [
   {
@@ -74,29 +73,6 @@ const tasks = [
     name:"puzzle"
   },
 ];
-const games = [
-  {
-    name: "game 1",
-    description: "Game description",
-    challange: "Game challange",
-    players: 1,
-    duration:1,
-  },
-  {
-    name: "game 2",
-    description: "Game description",
-    challange: "Game challange",
-    players: 1,
-    duration:1,
-  },
-  {
-    name: "game 3",
-    description: "Game description",
-    challange: "Game challange",
-    players: 1,
-    duration:1,
-  },
-];
 
 moongose
   .connect(DB_URL)
@@ -105,14 +81,10 @@ moongose
     if (tasks.length) {
       await Task.collection.drop();
     }
-    if (games.length) {
-      await Game.collection.drop();
-    }
   })
   .catch((error) => console.log("Error deleting tasks collection from seed: " + error))
   .then(async () => {
     await Task.insertMany(tasks);
-    await Game.insertMany(games);
   })
   .catch((error) => console.log("Error creation tasks from seed: " + error))
   .finally(() => moongose.disconnect());
