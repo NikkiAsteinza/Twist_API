@@ -1,9 +1,14 @@
 <nav class="navbar-expand-lg sticky-top menu">
     <div>
-        <div class="navbar-translate row bg-white h-100 p-2">
-            <a class="navbar-brand logo" href="/">
+        <div class="navbar-translate row bg-white h-100 pt-2">
+            <a class="navbar-brand logo col" href="/">
             </a>
-            <div class="collapse navbar-collapse">
+            <div class="d-flex flex-grow justify-content-end">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse bg-white" id="navbarToggleExternalContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a href="/games/list" class="nav-link font-weight-bold">
@@ -22,13 +27,6 @@
                     </li>
                 </ul>
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
         </div>
     </div>
 </nav>
