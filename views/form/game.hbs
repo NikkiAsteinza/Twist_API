@@ -1,11 +1,11 @@
-<div class="container mt-5">
+<div class="container">
     {{> header}}
     {{> viewTitle
         icon="task"
         name="Game form"}}
     <form action="create/{{#if game}}{{ game.id }}/{{/if}}sent" method="POST" class="form">
         <div class=" mb-3 row w-100 justify-content-between">
-            <label for="name" class="form-label">Name:</label>
+            <label for="name" class="form-label font-weight-bold">Name</label>
             <input 
                 type="text" class="form-control"
                 id="name" name="name" maxlength="50"
@@ -14,7 +14,7 @@
         </div>
 
         <div class="mb-3 mb-3 row w-100 justify-content-between">
-            <label for="description" class="form-label">Description:</label>
+            <label for="description" class="form-label font-weight-bold">Description</label>
             <textarea 
                 class="form-control" id="description"
                 name="description" maxlength="250"
@@ -23,7 +23,7 @@
         </div>
 
         <div class="mb-3 mb-3 row w-100 justify-content-between">
-            <label for="challange" class="form-label">Challange:</label>
+            <label for="challange" class="form-label font-weight-bold">Challange</label>
             <textarea 
                 class="form-control" id="challange"
                 name="challange" maxlength="250"
@@ -33,27 +33,27 @@
 
         <div class="mb-3 row w-100 justify-content-between">
             <div class="col mb-3">
-                <label for="duration" class="form-label">Duration:</label>
+                <label for="duration" class="form-label font-weight-bold">Duration</label>
                 <input class="form-control" type="number" id="duration" name="duration"
                 {{#if game}} value={{ game.duration }} {{/if}}
                 required="true" />
             </div>
 
             <div class="col mb-3">
-                <label for="players" class="form-label">Players:</label>
+                <label for="players" class="form-label font-weight-bold">Players</label>
                 <input class="form-control" type="number" id="players" name="players" {{#if game}} value={{ game.players }}{{/if}} required="true" />
             </div>
         </div>
 
         {{#if game.puzzles}}
         <div class="mb-3 mb-3 row w-100 justify-content-between">
-            <label for="puzzles" class="form-label">Puzzles:</label>
+            <label for="puzzles" class="form-label font-weight-bold">Puzzles</label>
                 {{#each puzzles}}
                 <p value="{{_id}}">{{name}}</p>
                 {{/each}}
         </div>
         {{else}}
-        <label for="puzzles" class="form-label">Puzzles:</label>
+        <label for="puzzles" class="form-label font-weight-bold">Associated Puzzles</label>
         <div class="row p-2 bg-warning rounded align-items-middle">
             <p class="m-0 p-0 font-weight-bold">
                 <i class="fa-solid fa-triangle-exclamation"></i>
@@ -63,7 +63,7 @@
         {{/if}}
         {{#if puzzles}}
         <div class="mb-3 mb-3 row w-100 justify-content-between">
-            <label for="puzzles" class="form-label">Select Puzzles:</label>
+            <label for="puzzles" class="form-label font-weight-bold">Select Games</label>
             <select id="puzzles" name="puzzles" class="custom-select mr-sm-2" multiple>
                 {{#each puzzles}}
                 <option value="{{_id}}">{{name}}</option>
@@ -95,7 +95,6 @@
                 id=this.id
                 icon="fa-trash"
                 text="Delete"}}
-                {{!-- {{> deleteButton action="./game-delete/{{game.id}}"}} --}}
             {{/if}}
             {{> submitButton entity=game}}
         </div>

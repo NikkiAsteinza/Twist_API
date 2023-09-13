@@ -13,7 +13,7 @@ tasksRoutes.get("/list", async (req, res) => {
 });
   
   tasksRoutes.get("/create", async (req, res) => {
-    res.render("form/Tasks");
+    res.render("form/task");
 });
 
 tasksRoutes.post("/create/sent", async (req, res, next) => {

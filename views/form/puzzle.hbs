@@ -1,77 +1,69 @@
-<div class="container mt-5">
+<div class="container">
     {{> header}}
         {{> viewTitle
-        icon="task"
+        icon="fa-solid fa-puzzle-piece"
         name="Puzzle form"}}
-    <form action="create/{{#if game}}{{ game.id }}/{{/if}}sent" method="POST" class="form">
-        <div class=" mb-3 row w-100 justify-content-between">
-            <label for="name" class="form-label">Name:</label>
-            <input 
-                type="text" class="form-control"
-                id="name" name="name" maxlength="50"
-                 {{#if puzzle}}
-                value={{ puzzle.name }} {{/if}}
-                required>
-        </div>
+    <form action="create/{{#if game}}{{ game.id }}/{{/if}}sent" method="POST" class="form p-3">
+        <div class="row">
+            <div class="col m-2">
+                    <div class="mb-3 row justify-content-between">
+                        <label for="name" class="form-label font-weight-bold">Name</label>
+                        <input 
+                            type="text" class="form-control"
+                            id="name" name="name" maxlength="50"
+                            {{#if puzzle}}
+                            value={{ puzzle.name }} {{/if}}
+                            required>
+                    </div>
+                    <div class="mb-3 row justify-content-between">
+                        <label for="description" class="form-label font-weight-bold">Description</label>
+                        <textarea 
+                            class="form-control" id="description"
+                            name="description" maxlength="250"
+                        >{{#if puzzle}}{{ puzzle.description }} {{/if}}</textarea>
+                    </div>
 
-        <div class="mb-3 mb-3 row w-100 justify-content-between">
-            <label for="description" class="form-label">Description:</label>
-            <textarea 
-                class="form-control" id="description"
-                name="description" maxlength="250"
-            >{{#if puzzle}}{{ puzzle.description }} {{/if}}</textarea>
-        </div>
+                    <div class="mb-3 row justify-content-between">
+                        <label for="introVideo" class="form-label font-weight-bold">Intro Video URL</label>
+                        <input type="text" class="form-control" id="introVideo" name="introVideo"
+                        {{#if puzzle}}
+                            value={{ puzzle.introVideo }} {{/if}}
+                        >
+                    </div>
+                    <div class="mb-3 row justify-content-between">
+                        <label for="endVideo" class="form-label font-weight-bold">End Video URL</label>
+                        <input type="text" class="form-control" id="endVideo" name="endVideo" {{#if puzzle}}
+                            value={{ puzzle.endVideo }} {{/if}}
+                        >
+                        </div>
 
-        <div class="mb-3 row w-100 justify-content-between">
-            <div class="col mb-3">
-                <label for="introVideo" class="form-label">Intro Video URL:</label>
-                <input type="text" class="form-control" id="introVideo" name="introVideo"
-                {{#if puzzle}}
-                    value={{ puzzle.introVideo }} {{/if}}
-                >
             </div>
-
-            <div class="col mb-3">
-                <label for="endVideo" class="form-label">End Video URL:</label>
-                <input type="text" class="form-control" id="endVideo" name="endVideo" {{#if puzzle}}
-                    value={{ puzzle.endVideo }} {{/if}}
-                >
-                </div>
-        </div>
-        {{#if puzzle.tasks}}
-        <div class="mb-3 mb-3 row w-100 justify-content-between">
-            <label for="puzzles" class="form-label">Tasks:</label>
-                {{#each puzzle.tasks}}
-                <p value="{{_id}}">{{name}}</p>
-                {{/each}}
-        </div>
-        {{else}}
-        <label for="puzzles" class="form-label">Tasks:</label>
-        <div class="row p-2 bg-warning rounded align-items-middle">
-
-            <p class="m-0 p-0 font-weight-bold">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-                    No task added
-            </p>
-        </div>
-        {{/if}}
-        {{#if tasks}}
-        <div class="mb-3 mb-3 row w-100 justify-content-between">
-            <label for="tasks" class="form-label">Select Tasks:</label>
-            <select id="tasks" name="tasks" class="custom-select mr-sm-2" multiple>
-                {{#each tasks}}
-                <option class="p-2" value="{{_id}}">{{name}}</option>
-                {{/each}}
-            </select>
-        </div>
-        {{else}}
-        <div class="row p-2 bg-warning rounded align-items-middle">
-            <p class="m-0 p-0 font-weight-bold">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-                    No tasks to add
-            </p>
-        </div>
-        {{/if}}
+            <div class="col m-2">
+            {{#if puzzle}}
+                {{#if puzzle.tasks}}
+                <label for="puzzles" class="form-label font-weight-bold">Associated Tasks</label>
+                    {{#each puzzle.tasks}}
+                    <p value="{{_id}}">{{name}}</p>
+                    {{/each}}
+                {{else}}
+                <label for="puzzles" class="form-label font-weight-bold">Tasks selector</label>
+                {{> neutralMessage text="No tasks added"}}
+                {{/if}}
+            {{/if}}
+            {{#if tasks}}
+            <div class="mb-3 row justify-content-between">
+                <label for="tasks" class="form-label font-weight-bold">Select Tasks</label>
+                <select id="tasks" name="tasks" class="custom-select mr-sm-2" multiple>
+                    {{#each tasks}}
+                    <option class="p-2" value="{{_id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            {{else}}
+            {{> neutralMessage text="No tasks to add"}}
+            {{/if}}
+            </div>
+        </div>      
         <div class="row justify-content-end">
             {{> genericButton
                 style="primary"
@@ -88,11 +80,9 @@
                 id=this.id
                 icon="fa-trash"
                 text="Delete"}}
-                {{!-- {{> deleteButton action="./game-delete/{{game.id}}"}} --}}
             {{/if}}
             {{> submitButton entity=puzzle}}
         </div>
-
     </form>
     {{> footer year=2021}}
 </div>

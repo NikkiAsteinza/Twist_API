@@ -1,44 +1,26 @@
-<div class="container mt-5">
+<div class="container">
     {{> header}}
     {{> viewTitle
-    icon="task"
-    name="Task"}}
-    <form action="/task-create-sent" method="POST" class="form">
-        <div class="input-group mb-3">
-            <label for="name" class="form-label">Name:</label>
+        icon="fa-solid fa-thumbtack"
+        name="Task"}}
+    <form action="/task-create-sent" method="POST" class="form p-3">
+        <div class=" mb-3 row w-100 justify-content-between">
+            <label for="name" class="form-label font-weight-bold">Name</label>
             <input type="text" class="form-control" id="puzzleName" name="puzzleName" maxlength="50" required>
         </div>
 
-        <div class="input-group mb-3">
-            <label for="description" class="form-label">Description:</label>
+        <div class=" mb-3 row w-100 justify-content-between">
+            <label for="description" class="form-label font-weight-bold">Description</label>
             <textarea class="form-control" id="description" name="description" maxlength="250"></textarea>
         </div>
 
-        <div class="input-group mb-3">
-            <label for="description" class="form-label">Clue:</label>
-            <textarea class="form-control" id="description" name="description" maxlength="250"></textarea>
+        <div class=" mb-3 row w-100 justify-content-between">
+            <label for="clue" class="form-label font-weight-bold">Clue</label>
+            <textarea class="form-control" id="clue" name="clue" maxlength="250"></textarea>
         </div>
-
-        {{!-- <div class="input-group mb-3">
-            <label for="startedAt" class="form-label">Started At:</label>
-            <input type="text" class="form-control" id="startedAt" name="startedAt">
+        <div class="row justify-content-end">
+            <button type="submit" class="btn btn-primary">Create Puzzle</button>
         </div>
-
-        <div class="input-group mb-3">
-            <label for="finishedAt" class="form-label">Finished At:</label>
-            <input type="text" class="form-control" id="finishedAt" name="finishedAt">
-        </div>
-
-        <div class="input-group mb-3">
-            <label for="introVideo" class="form-label">Intro Video URL:</label>
-            <input type="text" class="form-control" id="introVideo" name="introVideo">
-        </div>
-
-        <div class="input-group mb-3">
-            <label for="endVideo" class="form-label">End Video URL:</label>
-            <input type="text" class="form-control" id="endVideo" name="endVideo">
-        </div> --}}
-        <button type="submit" class="btn btn-primary">Create Puzzle</button>
     </form>
     {{> footer year=2021}}
 </div>
