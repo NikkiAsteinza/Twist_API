@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const gameSchema = mongoose.Schema({
+    type: {
+        type: String,
+        enum : ["EXPERIENCE","PROTOTYPE"],
+        default: "EXPERIENCE"
+    },
     name: {type:String, required:true},
     description: {type:String, required:true},
     challange: {type:String, required:true},
