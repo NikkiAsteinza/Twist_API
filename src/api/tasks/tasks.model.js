@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const taskSchema = mongoose.Schema({
+    dna: {
+        type: String,
+        enum : ["CLON","PROTOTYPE"],
+        default: "CLON"
+    },
     owner:[{type: mongoose.Types.ObjectId, ref: "puzzle"}],
     name:{type:String, required:true, maxLeght:50},
     description:{type:String, maxLeght:250},
@@ -9,7 +14,7 @@ const taskSchema = mongoose.Schema({
     endVideo:{type:String},
     status: {
         type: String,
-        enum : ["IDLE","DONE"],
+        enum : ["IDLE","STARTED","PAUSED","DONE"],
         default: "IDLE"
     },
 },

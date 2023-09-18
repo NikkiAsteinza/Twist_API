@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
 
 const gameSchema = mongoose.Schema({
-    type: {
+    dna: {
         type: String,
-        enum : ["EXPERIENCE","PROTOTYPE"],
-        default: "EXPERIENCE"
+        enum : ["CLON","PROTOTYPE"],
+        default: "CLON"
+    },
+    status: {
+        type: String,
+        enum : ["IDLE","STARTED","PAUSED","DONE"],
+        default: "IDLE"
     },
     name: {type:String, required:true},
     description: {type:String, required:true},
