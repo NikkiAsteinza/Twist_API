@@ -3,20 +3,20 @@ const mongoose = require("mongoose");
 const taskSchema = mongoose.Schema({
     dna: {
         type: String,
-        enum : ["CLON","PROTOTYPE"],
-        default: "CLON"
+        enum : ["CLONE","PROTOTYPE"],
+        default: "CLONE"
+    },
+    name: {type:String, required:true},
+    description: {type:String, required:true},
+    status: {
+        type: String,
+        enum : ["IDLE","STARTED","DONE"],
+        default: "IDLE"
     },
     owner:[{type: mongoose.Types.ObjectId, ref: "puzzle"}],
-    name:{type:String, required:true, maxLeght:50},
-    description:{type:String, maxLeght:250},
     clue:{type:String},
     introVideo:{type:String},
     endVideo:{type:String},
-    status: {
-        type: String,
-        enum : ["IDLE","STARTED","PAUSED","DONE"],
-        default: "IDLE"
-    },
 },
 {
     timestamps:true,

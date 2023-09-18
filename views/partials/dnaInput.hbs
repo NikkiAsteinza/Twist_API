@@ -1,0 +1,12 @@
+<div class="row p-3 m-0 mb-3 w-100 justify-content-between">
+    <label for="DNA" class="form-label font-weight-bold">DNA</label>
+    {{#if onlyView}}
+    <p>{{dna}}</p>
+    {{else}}
+    <select id="DNA" name="dna" class="form-control" aria-label="Select a entity dna">
+        <option value="NONE">NONE</option>
+        <option value="CLONE">CLONE</option>
+        <option value="PROTOTYPE">PROTOTYPE</option>
+    </select>
+    {{/if}}
+</div>

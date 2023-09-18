@@ -4,18 +4,18 @@ const puzzleSchema = mongoose.Schema(
 {
     dna: {
         type: String,
-        enum : ["CLON","PROTOTYPE"],
-        default: "CLON"
+        enum : ["CLONE","PROTOTYPE"],
+        default: "CLONE"
     },
-    owner:[{type: mongoose.Types.ObjectId, ref:"games"}],
-    name:{type:String, required:true, maxLeght:50},
-    description:{type:String, maxLeght:250},
-    tasks:[{type: mongoose.Types.ObjectId, ref: "tasks"}],
+    name: {type:String, required:true},
+    description: {type:String, required:true},
     status: {
         type: String,
-        enum : ["IDLE","STARTED","PAUSED","DONE"],
+        enum : ["IDLE","STARTED","DONE"],
         default: "IDLE"
     },
+    owner:[{type: mongoose.Types.ObjectId, ref:"games"}],
+    tasks:[{type: mongoose.Types.ObjectId, ref: "tasks"}],
 },
 {
     timestamps:true,
