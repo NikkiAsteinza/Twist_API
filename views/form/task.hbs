@@ -1,44 +1,34 @@
-<div class="container mt-5">
+<div class="container">
     {{> header}}
     {{> viewTitle
-    icon="task"
-    name="Task"}}
-    <form action="/task-create-sent" method="POST" class="form">
-        <div class="input-group mb-3">
-            <label for="name" class="form-label">Name:</label>
-            <input type="text" class="form-control" id="puzzleName" name="puzzleName" maxlength="50" required>
-        </div>
+        icon="fa-solid fa-thumbtack"
+        name="Task form"}}
+    <form action="{{#if task}}{{task._id}}/sent{{else}}create/sent{{/if}}" method="POST" class="form p-3">
+        {{> dnaInput onlyView=onlyView dna=task.dna}}
+        {{> nameAndDescriptionInput Game=task onlyView=onlyView}}
 
-        <div class="input-group mb-3">
-            <label for="description" class="form-label">Description:</label>
-            <textarea class="form-control" id="description" name="description" maxlength="250"></textarea>
+        <div class=" mb-3 row w-100 justify-content-between">
+            <label for="clue" class="form-label font-weight-bold">Clue</label>
+            <textarea class="form-control" id="clue" name="clue" maxlength="250">{{#if task}}task.clue{{/if}}</textarea>
         </div>
+        <div class="row justify-content-end">
+            {{> genericButton
+                style="primary"
+                action="tasks"
+                icon="fa-arrow-left"
+                text="Back to list"}}
 
-        <div class="input-group mb-3">
-            <label for="description" class="form-label">Clue:</label>
-            <textarea class="form-control" id="description" name="description" maxlength="250"></textarea>
+             {{#if game}}
+                {{> genericButton
+                style="danger"
+                entityType=type
+                action="/delete"
+                id=this.id
+                icon="fa-trash"
+                text="Delete"}}
+            {{/if}}
+            {{> submitButton entity=game}}
         </div>
-
-        {{!-- <div class="input-group mb-3">
-            <label for="startedAt" class="form-label">Started At:</label>
-            <input type="text" class="form-control" id="startedAt" name="startedAt">
-        </div>
-
-        <div class="input-group mb-3">
-            <label for="finishedAt" class="form-label">Finished At:</label>
-            <input type="text" class="form-control" id="finishedAt" name="finishedAt">
-        </div>
-
-        <div class="input-group mb-3">
-            <label for="introVideo" class="form-label">Intro Video URL:</label>
-            <input type="text" class="form-control" id="introVideo" name="introVideo">
-        </div>
-
-        <div class="input-group mb-3">
-            <label for="endVideo" class="form-label">End Video URL:</label>
-            <input type="text" class="form-control" id="endVideo" name="endVideo">
-        </div> --}}
-        <button type="submit" class="btn btn-primary">Create Puzzle</button>
     </form>
     {{> footer year=2021}}
 </div>

@@ -1,8 +1,19 @@
 const mongoose = require("mongoose");
 
 const taskSchema = mongoose.Schema({
-    name:{type:String, required:true, maxLeght:50},
-    description:{type:String, maxLeght:250},
+    dna: {
+        type: String,
+        enum : ["CLONE","PROTOTYPE"],
+        default: "CLONE"
+    },
+    name: {type:String, required:true},
+    description: {type:String, required:true},
+    status: {
+        type: String,
+        enum : ["IDLE","STARTED","DONE"],
+        default: "IDLE"
+    },
+    owner:[{type: mongoose.Types.ObjectId, ref: "puzzle"}],
     clue:{type:String},
     introVideo:{type:String},
     endVideo:{type:String},

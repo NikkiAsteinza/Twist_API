@@ -3,7 +3,6 @@ const Task = require("../tasks/tasks.model");
 const Game = require("./games.model");
 const gamesRoutes = require("express").Router();
 
-
 // HANDLEBARS
 
 gamesRoutes.get("/list", async (req, res) => {
@@ -69,7 +68,7 @@ await doc.updateOne(req.body).then((newGame) => {
             title : "Editting game",
             icon: "check",
             message: "Game edited succesfully",
-            goBackLink:"../list"});
+            goBackLink:"../../list"});
         })
         .catch(err => {
             if (err) {
@@ -78,7 +77,7 @@ await doc.updateOne(req.body).then((newGame) => {
                     title : "Editting game",
                     icon: "trash",
                     message: "Error while editting game",
-                    goBackLink:"../list"});
+                    goBackLink:"../../list"});
             } else {
                 console.log(err)
                 next(err)

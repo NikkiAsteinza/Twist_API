@@ -1,0 +1,27 @@
+<div class="row m-0 mb-3 w-100 justify-content-between">
+    <div class="col mb-3">
+        <label for="name" class="form-label font-weight-bold">NAME</label>
+        {{#if onlyView}}
+        <p>{{Game.name}}</p>
+        {{else}}
+        <input 
+            type="text" class="form-control"
+            id="name" name="name" maxlength="50"
+                {{#if Game}} value={{ Game.name }} {{/if}}
+            required="true" />
+        {{/if}}
+    </div>
+
+    <div class="col mb-3">
+        <label for="description" class="form-label font-weight-bold">DESCRIPTION</label>
+        {{#if onlyView}}
+        <p>{{Game.description}}</p>
+        {{else}}
+        <textarea 
+            class="form-control" id="description"
+            name="description" maxlength="250"
+            required="true"
+        >{{#if Game}}{{ Game.description }}{{/if}}</textarea>
+        {{/if}}
+    </div>
+</div>

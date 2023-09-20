@@ -2,9 +2,20 @@ const mongoose = require("mongoose");
 
 const puzzleSchema = mongoose.Schema(
 {
-    name:{type:String, required:true, maxLeght:50},
-    description:{type:String, maxLeght:250},
-    tasks:[{type: mongoose.Types.ObjectId, ref: "puzzles"}]
+    dna: {
+        type: String,
+        enum : ["CLONE","PROTOTYPE"],
+        default: "CLONE"
+    },
+    name: {type:String, required:true},
+    description: {type:String, required:true},
+    status: {
+        type: String,
+        enum : ["IDLE","STARTED","DONE"],
+        default: "IDLE"
+    },
+    owner:[{type: mongoose.Types.ObjectId, ref:"games"}],
+    tasks:[{type: mongoose.Types.ObjectId, ref: "tasks"}],
 },
 {
     timestamps:true,
