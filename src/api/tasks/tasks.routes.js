@@ -46,9 +46,9 @@ tasksRoutes.get("/edit/:id", async (req, res, next) => {
     const { id } = req.params;
     console.log(id);
     Tasks.findById(id)
-    .then((Tasks)=>{
-        console.log("Tasks found "+Tasks);
-        res.render("form/Tasks", { Tasks });
+    .then((task)=>{
+        console.log("Tasks found "+ task);
+        res.render("form/task", { task });
     })
     .catch((err) => next(err));
 });

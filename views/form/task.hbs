@@ -2,24 +2,32 @@
     {{> header}}
     {{> viewTitle
         icon="fa-solid fa-thumbtack"
-        name="Task"}}
-    <form action="/task-create-sent" method="POST" class="form p-3">
-        <div class=" mb-3 row w-100 justify-content-between">
-            <label for="name" class="form-label font-weight-bold">Name</label>
-            <input type="text" class="form-control" id="puzzleName" name="puzzleName" maxlength="50" required>
-        </div>
-
-        <div class=" mb-3 row w-100 justify-content-between">
-            <label for="description" class="form-label font-weight-bold">Description</label>
-            <textarea class="form-control" id="description" name="description" maxlength="250"></textarea>
-        </div>
+        name="Task form"}}
+    <form action="{{#if task}}{{task._id}}/sent{{else}}create/sent{{/if}}" method="POST" class="form p-3">
+        {{> dnaInput onlyView=onlyView dna=task.dna}}
+        {{> nameAndDescriptionInput Game=task onlyView=onlyView}}
 
         <div class=" mb-3 row w-100 justify-content-between">
             <label for="clue" class="form-label font-weight-bold">Clue</label>
-            <textarea class="form-control" id="clue" name="clue" maxlength="250"></textarea>
+            <textarea class="form-control" id="clue" name="clue" maxlength="250">{{#if task}}task.clue{{/if}}</textarea>
         </div>
         <div class="row justify-content-end">
-            <button type="submit" class="btn btn-primary">Create Puzzle</button>
+            {{> genericButton
+                style="primary"
+                action="tasks"
+                icon="fa-arrow-left"
+                text="Back to list"}}
+
+             {{#if game}}
+                {{> genericButton
+                style="danger"
+                entityType=type
+                action="/delete"
+                id=this.id
+                icon="fa-trash"
+                text="Delete"}}
+            {{/if}}
+            {{> submitButton entity=game}}
         </div>
     </form>
     {{> footer year=2021}}

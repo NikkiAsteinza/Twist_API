@@ -3,7 +3,7 @@
         {{> viewTitle
         icon="fa-solid fa-puzzle-piece"
         name="Puzzle form"}}
-    <form action="create/{{#if game}}{{ game.id }}/{{/if}}sent" method="POST" class="form p-3">
+    <form action="{{#if puzzle}}{{puzzle._id}}/sent{{else}}create/sent{{/if}}" method="POST" class="form p-3">
         <div class="row">
             <div class="col m-2">
                     <div class="mb-3 row justify-content-between">

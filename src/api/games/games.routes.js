@@ -3,7 +3,6 @@ const Task = require("../tasks/tasks.model");
 const Game = require("./games.model");
 const gamesRoutes = require("express").Router();
 
-
 // HANDLEBARS
 
 gamesRoutes.get("/list", async (req, res) => {
