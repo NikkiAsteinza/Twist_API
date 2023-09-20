@@ -69,7 +69,7 @@ await doc.updateOne(req.body).then((newGame) => {
             title : "Editting game",
             icon: "check",
             message: "Game edited succesfully",
-            goBackLink:"../list"});
+            goBackLink:"../../list"});
         })
         .catch(err => {
             if (err) {
@@ -78,7 +78,7 @@ await doc.updateOne(req.body).then((newGame) => {
                     title : "Editting game",
                     icon: "trash",
                     message: "Error while editting game",
-                    goBackLink:"../list"});
+                    goBackLink:"../../list"});
             } else {
                 console.log(err)
                 next(err)

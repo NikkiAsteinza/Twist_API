@@ -2,7 +2,7 @@
     {{> viewTitle
         icon="fa-solid fa-chess-board"
         name="Game form"}}
-    <form action="{{#if game}}edit/{{game._id}}/sent{{else}}create/sent{{/if}}" method="POST" class="form">
+    <form action="{{#if game}}{{game._id}}/sent{{else}}create/sent{{/if}}" method="POST" class="form">
         {{> dnaInput onlyView=onlyView dna=game.dna}}
         {{> nameAndDescriptionInput Game=game onlyView=onlyView}}
         {{> durationAndPlayersInput Game=game onlyView=onlyView}}
