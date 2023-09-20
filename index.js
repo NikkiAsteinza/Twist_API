@@ -41,6 +41,11 @@ hbs.registerPartials(__dirname + "/views/partials", function (err) {});
 server.set("view engine", "hbs");
 server.set("views", __dirname + "/views");
 
+// Define the eq helper
+hbs.registerHelper('eq', function (a, b, options) {
+  return a === b ? options.fn(this) : options.inverse(this);
+});
+
 // Put these statements before you define any routes.
 server.use(express.static(__dirname + "/public"));
 

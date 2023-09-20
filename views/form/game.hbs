@@ -4,9 +4,10 @@
         name="Game form"}}
     <form action="{{#if game}}{{game._id}}/sent{{else}}create/sent{{/if}}" method="POST" class="form">
         {{> dnaInput onlyView=onlyView dna=game.dna}}
+        {{> statusInput status=game.status}}
         {{> nameAndDescriptionInput Game=game onlyView=onlyView}}
         {{> durationAndPlayersInput Game=game onlyView=onlyView}}
-
+        
         <div class="row m-0 mb-3 w-100 justify-content-between">
             <div class="col mb-3">
                 {{#if game.puzzles}}

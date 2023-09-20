@@ -3,10 +3,9 @@
     {{#if onlyView}}
     <p>{{dna}}</p>
     {{else}}
-    <select id="DNA" name="dna" class="form-control" aria-label="Select a entity dna">
-        <option value="NONE">NONE</option>
-        <option value="CLONE">CLONE</option>
-        <option value="PROTOTYPE">PROTOTYPE</option>
+    <select name="dna" class="form-select d-inline-block p-1 m-0 rounded">
+        <option {{#eq dna "PROTOTYPE"}}selected="selected"{{/eq}} value="PROTOTYPE" class="bg-primary">PROTOTYPE</option>
+        <option {{#eq dna "CLON"}}selected="selected"{{/eq}} value="CLON" class="bg-secondary">CLON</option>
     </select>
     {{/if}}
 </div>

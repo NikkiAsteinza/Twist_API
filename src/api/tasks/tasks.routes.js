@@ -1,9 +1,10 @@
-const { getAllTasks } = require("./tasks.controller");
+const { getAllTasks, updateTaskStatus } = require("./tasks.controller");
 const Tasks = require("./tasks.model");
 
 const tasksRoutes = require("express").Router();
 
 tasksRoutes.get("/", getAllTasks);
+tasksRoutes.post("/update/:id/status", updateTaskStatus);
 
 /// Handlebars
 
