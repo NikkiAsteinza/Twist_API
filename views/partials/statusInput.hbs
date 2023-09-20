@@ -1,0 +1,12 @@
+<div class="row p-3 m-0 mb-3 w-100 justify-content-between">
+    <label for="DNA" class="form-label font-weight-bold">STATUS</label>
+    {{#if onlyView}}
+    <p>{{status}}</p>
+    {{else}}
+    <select name="status" class="form-select d-inline-block p-1 m-0 rounded">
+        <option {{#eq status "IDLE"}}selected="selected"{{/eq}} value="IDLE" class="bg-secondary">IDLE</option>
+        <option {{#eq status "STARTED"}}selected="selected"{{/eq}} value="STARTED" class="bg-warning">STARTED</option>
+        <option {{#eq status "DONE"}}selected="selected"{{/eq}} value="DONE" class="bg-success">DONE</option>
+    </select>
+    {{/if}}
+</div>

@@ -1,3 +1,6 @@
 <div class="col-1 text-center">
-    <p style="width:20px; height:20px;" class="d-inline-block p-1 m-0 rounded-circle {{#if status}}bg-success {{else}}bg-warning{{/if}}"></p>
+    <p style="width:20px; height:20px;" class="d-inline-block p-1 m-0 rounded-circle 
+        {{#eq status "IDLE"}}bg-secondary{{/eq}}
+        {{#eq status "STARTED"}}bg-warning{{/eq}}
+        {{#eq status "DONE"}}bg-success{{/eq}}"></p>
 </div>

@@ -6,31 +6,17 @@
     <form action="{{#if puzzle}}{{puzzle._id}}/sent{{else}}create/sent{{/if}}" method="POST" class="form p-3">
         <div class="row">
             <div class="col m-2">
-                    <div class="mb-3 row justify-content-between">
-                        <label for="name" class="form-label font-weight-bold">Name</label>
-                        <input 
-                            type="text" class="form-control"
-                            id="name" name="name" maxlength="50"
-                            {{#if puzzle}}
-                            value={{ puzzle.name }} {{/if}}
-                            required>
-                    </div>
-                    <div class="mb-3 row justify-content-between">
-                        <label for="description" class="form-label font-weight-bold">Description</label>
-                        <textarea 
-                            class="form-control" id="description"
-                            name="description" maxlength="250"
-                        >{{#if puzzle}}{{ puzzle.description }} {{/if}}</textarea>
-                    </div>
-
-                    <div class="mb-3 row justify-content-between">
+                    {{> dnaInput onlyView=onlyView dna=puzzle.dna}}
+                    {{> statusInput status=game.status}}
+                          
+                    <div class="row p-3 m-0 mb-3 w-100 justify-content-between">
                         <label for="introVideo" class="form-label font-weight-bold">Intro Video URL</label>
                         <input type="text" class="form-control" id="introVideo" name="introVideo"
                         {{#if puzzle}}
                             value={{ puzzle.introVideo }} {{/if}}
                         >
                     </div>
-                    <div class="mb-3 row justify-content-between">
+                    <div class="row p-3 m-0 mb-3 w-100 justify-content-between">
                         <label for="endVideo" class="form-label font-weight-bold">End Video URL</label>
                         <input type="text" class="form-control" id="endVideo" name="endVideo" {{#if puzzle}}
                             value={{ puzzle.endVideo }} {{/if}}
@@ -39,6 +25,7 @@
 
             </div>
             <div class="col m-2">
+            {{> nameAndDescriptionInput Game=puzzle onlyView=onlyView}} 
             {{#if puzzle}}
                 {{#if puzzle.tasks}}
                 <label for="puzzles" class="form-label font-weight-bold">Associated Tasks</label>

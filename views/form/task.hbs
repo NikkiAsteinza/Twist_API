@@ -5,11 +5,12 @@
         name="Task form"}}
     <form action="{{#if task}}{{task._id}}/sent{{else}}create/sent{{/if}}" method="POST" class="form p-3">
         {{> dnaInput onlyView=onlyView dna=task.dna}}
+        {{> statusInput status=game.status}}
         {{> nameAndDescriptionInput Game=task onlyView=onlyView}}
 
-        <div class=" mb-3 row w-100 justify-content-between">
+        <div class="row p-3 m-0 mb-3 w-100 justify-content-between">
             <label for="clue" class="form-label font-weight-bold">Clue</label>
-            <textarea class="form-control" id="clue" name="clue" maxlength="250">{{#if task}}task.clue{{/if}}</textarea>
+            <textarea class="form-control" id="clue" name="clue" maxlength="250">{{#if task}}{{task.clue}}{{/if}}</textarea>
         </div>
         <div class="row justify-content-end">
             {{> genericButton
